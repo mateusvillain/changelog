@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Changelog — O que há de novo no Lumen</title>
+  <meta name="description" content="Novos recursos, melhorias e correções do Lumen, publicados a cada release.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@600&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- Sprite de ícones (Lucide). Referenciado via <use>; sempre decorativo. -->
+  <svg xmlns="http://www.w3.org/2000/svg" hidden>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 6 9 17l-5-5"/>
+    </symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+    </symbol>
+    <symbol id="icon-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m6 9 6 6 6-6"/>
+    </symbol>
+    <symbol id="icon-history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/>
+    </symbol>
+  </svg>
+
+  <header class="page-header container">
+    <h1 class="page-header__title">O que há de novo no Lumen</h1>
+    <p class="page-header__subtitle">Novos recursos, melhorias e correções, publicados a cada release. Acompanhe a evolução do produto em ordem cronológica.</p>
+  </header>
+
+  <main id="conteudo" tabindex="-1">
+    <div class="container">
+      <div class="filter-bar">
+        <div class="filters" role="group" aria-labelledby="filters-label" data-requires-js hidden>
+          <span id="filters-label" class="visually-hidden">Filtrar releases por tipo</span>
+          <button type="button" class="filter" data-filter="todos" aria-pressed="true">Todos</button>
+          <button type="button" class="filter" data-filter="novo" aria-pressed="false">Novo</button>
+          <button type="button" class="filter" data-filter="melhoria" aria-pressed="false">Melhoria</button>
+          <button type="button" class="filter" data-filter="correcao" aria-pressed="false">Correção</button>
+        </div>
+        <p class="filter-bar__count">
+          <svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#icon-history"/></svg>
+          48 releases desde 2024
+        </p>
+      </div>
+
+      <section class="history" aria-labelledby="history-title">
+        <h2 id="history-title" class="visually-hidden">Histórico de releases</h2>
+
+        <!-- Região anunciada por leitores de tela ao filtrar ou carregar mais itens -->
+        <p id="timeline-status" class="visually-hidden" role="status"></p>
+
+        <ol id="timeline" class="timeline" role="list">
+          <li class="timeline__item" data-type="novo">
+            <article class="release release--latest" aria-labelledby="release-v3-2-0">
+              <header class="release__header">
+                <h3 id="release-v3-2-0" class="release__title" tabindex="-1">Colaboração em tempo real</h3>
+                <p class="release__description">Agora várias pessoas podem editar o mesmo projeto ao mesmo tempo. Cursores, seleções e comentários aparecem instantaneamente para todo o time.</p>
+              </header>
+
+              <div class="release__meta">
+                <time class="release__date" datetime="2026-10-18">
+                  <span aria-hidden="true">18 Out 2026</span>
+                  <span class="visually-hidden">18 de outubro de 2026</span>
+                </time>
+                <span class="release__version"><span class="visually-hidden">Versão </span>v3.2.0</span>
+                <span class="release__latest">Mais recente</span>
+                <p class="release__author">
+                  <img class="release__avatar" src="assets/avatars/ana-souza.jpg" alt="" width="22" height="22">
+                  <span><span class="visually-hidden">Publicado por </span>Ana Souza</span>
+                </p>
+              </div>
+
+              <ul class="tags" role="list" aria-label="Categorias">
+                <li class="tag tag--novo">Novo</li>
+                <li class="tag">Colaboração</li>
+              </ul>
+
+              <img class="release__cover" src="assets/covers/v3-2-0-colaboracao.jpg" alt="" width="1376" height="768" fetchpriority="high" decoding="async">
+
+              <ul class="highlights" role="list" aria-label="Destaques">
+                <li class="highlights__item">
+                  <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
+                  Cursores ao vivo com nome e cor de cada pessoa
+                </li>
+                <li class="highlights__item">
+                  <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
+                  Comentários em linha com menções e respostas
+                </li>
+                <li class="highlights__item">
+                  <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
+                  Histórico de versões com restauração em um clique
+                </li>
+              </ul>
+
+              <a class="release__link" href="releases/v3.2.0">
+                Ler notas completas<span class="visually-hidden"> da versão 3.2.0</span>
+                <svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg>
+              </a>
+            </article>
+          </li>
+
+          <li class="timeline__item" data-type="melhoria">
+            <article class="release" aria-labelledby="release-v3-1-4">
+              <header class="release__header">
+                <h3 id="release-v3-1-4" class="release__title" tabindex="-1">Editor até 3× mais rápido</h3>
+                <p class="release__description">Reescrevemos o motor de renderização do editor. Projetos grandes abrem mais rápido e a rolagem permanece fluida mesmo com milhares de elementos.</p>
+              </header>
+
+              <div class="release__meta">
+                <time class="release__date" datetime="2026-10-02">
+                  <span aria-hidden="true">02 Out 2026</span>
+                  <span class="visually-hidden">2 de outubro de 2026</span>
+                </time>
+                <span class="release__version"><span class="visually-hidden">Versão </span>v3.1.4</span>
+                <p class="release__author">
+                  <img class="release__avatar" src="assets/avatars/rafael-lima.jpg" alt="" width="22" height="22">
+                  <span><span class="visually-hidden">Publicado por </span>Rafael Lima</span>
+                </p>
+              </div>
+
+              <ul class="tags" role="list" aria-label="Categorias">
+                <li class="tag tag--melhoria">Melhoria</li>
+                <li class="tag">Performance</li>
+              </ul>
+
+              <img class="release__cover" src="assets/covers/v3-1-4-performance.jpg" alt="" width="768" height="1376" loading="lazy" decoding="async">
+
+              <ul class="highlights" role="list" aria-label="Destaques">
+                <li class="highlights__item">
+                  <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
+                  Abertura de arquivos 3× mais rápida
+                </li>
+                <li class="highlights__item">
+                  <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
+                  Uso de memória reduzido em 40%
+                </li>
+              </ul>
+
+              <a class="release__link" href="releases/v3.1.4">
+                Ler notas completas<span class="visually-hidden"> da versão 3.1.4</span>
+                <svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg>
+              </a>
+            </article>
+          </li>
+
+          <li class="timeline__item" data-type="novo">
+            <article class="release" aria-labelledby="release-v3-1-0">
+              <header class="release__header">
+                <h3 id="release-v3-1-0" class="release__title" tabindex="-1">Modo escuro e novos temas</h3>
+                <p class="release__description">O modo escuro chegou. Escolha entre claro, escuro ou automático, e personalize a interface com seis novos temas de cor.</p>
+              </header>
+
+              <div class="release__meta">
+                <time class="release__date" datetime="2026-09-12">
+                  <span aria-hidden="true">12 Set 2026</span>
+                  <span class="visually-hidden">12 de setembro de 2026</span>
+                </time>
+                <span class="release__version"><span class="visually-hidden">Versão </span>v3.1.0</span>
+                <p class="release__author">
+                  <img class="release__avatar" src="assets/avatars/julia-martins.jpg" alt="" width="22" height="22">
+                  <span><span class="visually-hidden">Publicado por </span>Júlia Martins</span>
+                </p>
+              </div>
+
+              <ul class="tags" role="list" aria-label="Categorias">
+                <li class="tag tag--novo">Novo</li>
+                <li class="tag">Design</li>
+              </ul>
+
+              <img class="release__cover" src="assets/covers/v3-1-0-modo-escuro.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+
+              <ul class="highlights" role="list" aria-label="Destaques">
+                <li class="highlights__item">
+                  <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
+                  Alternância automática conforme o sistema
+                </li>
+                <li class="highlights__item">
+                  <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
+                  Seis temas de cor com contraste AA
+                </li>
+              </ul>
+
+              <a class="release__link" href="releases/v3.1.0">
+                Ler notas completas<span class="visually-hidden"> da versão 3.1.0</span>
+                <svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg>
+              </a>
+            </article>
+          </li>
+
+          <li class="timeline__item" data-type="correcao">
+            <article class="release" aria-labelledby="release-v3-0-2">
+              <header class="release__header">
+                <h3 id="release-v3-0-2" class="release__title" tabindex="-1">Correções e estabilidade</h3>
+                <p class="release__description">Uma release focada em qualidade: corrigimos falhas relatadas pela comunidade e melhoramos a estabilidade geral.</p>
+              </header>
+
+              <div class="release__meta">
+                <time class="release__date" datetime="2026-08-28">
+                  <span aria-hidden="true">28 Ago 2026</span>
+                  <span class="visually-hidden">28 de agosto de 2026</span>
+                </time>
+                <span class="release__version"><span class="visually-hidden">Versão </span>v3.0.2</span>
+                <p class="release__author">
+                  <img class="release__avatar" src="assets/avatars/diego-alves.jpg" alt="" width="22" height="22">
+                  <span><span class="visually-hidden">Publicado por </span>Diego Alves</span>
+                </p>
+              </div>
+
+              <ul class="tags" role="list" aria-label="Categorias">
+                <li class="tag tag--correcao">Correção</li>
+                <li class="tag">Editor</li>
+              </ul>
+
+              <ul class="highlights" role="list" aria-label="Destaques">
+                <li class="highlights__item">
+                  <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
+                  Corrigido travamento ao colar imagens grandes
+                </li>
+                <li class="highlights__item">
+                  <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
+                  Atalhos de teclado voltam a funcionar no Firefox
+                </li>
+                <li class="highlights__item">
+                  <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
+                  Exportação em PDF preserva fontes personalizadas
+                </li>
+              </ul>
+
+              <a class="release__link" href="releases/v3.0.2">
+                Ler notas completas<span class="visually-hidden"> da versão 3.0.2</span>
+                <svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg>
+              </a>
+            </article>
+          </li>
+        </ol>
+
+        <p class="timeline__empty" hidden>Nenhuma release deste tipo por aqui ainda.</p>
+
+        <div class="timeline__end">
+          <button type="button" class="load-more" aria-controls="timeline" data-requires-js hidden>
+            Carregar releases anteriores
+            <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-chevron-down"/></svg>
+          </button>
+          <p class="timeline__done" hidden>Você chegou ao início do changelog.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Molde usado pelo JS para renderizar releases carregadas sob demanda -->
+  <template id="release-template">
+    <li class="timeline__item">
+      <article class="release">
+        <header class="release__header">
+          <h3 class="release__title" tabindex="-1"></h3>
+          <p class="release__description"></p>
+        </header>
+        <div class="release__meta">
+          <time class="release__date">
+            <span aria-hidden="true" data-slot="date-short"></span>
+            <span class="visually-hidden" data-slot="date-long"></span>
+          </time>
+          <span class="release__version"><span class="visually-hidden">Versão </span><span data-slot="version"></span></span>
+          <p class="release__author">
+            <img class="release__avatar" alt="" width="22" height="22" loading="lazy" decoding="async">
+            <span><span class="visually-hidden">Publicado por </span><span data-slot="author"></span></span>
+          </p>
+        </div>
+        <ul class="tags" role="list" aria-label="Categorias"></ul>
+        <ul class="highlights" role="list" aria-label="Destaques"></ul>
+        <a class="release__link">
+          Ler notas completas<span class="visually-hidden" data-slot="link-context"></span>
+          <svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg>
+        </a>
+      </article>
+    </li>
+  </template>
+</body>
+</html>
