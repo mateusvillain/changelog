@@ -728,6 +728,97 @@ main:focus {
 }
 
 /* ==========================================================================
+   Animações — melhoria progressiva
+   Tudo fica atrás de prefers-reduced-motion e de @supports: sem suporte ou com
+   movimento reduzido, o conteúdo aparece direto, sem nada escondido.
+   Só em "screen" para que a impressão nunca saia com itens transparentes.
+   ========================================================================== */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+}
+
+@keyframes rail-fill {
+  to {
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes dot-reach {
+  to {
+    border-color: var(--accent);
+  }
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  /* Scroll-driven animations (Chrome/Edge 115+, Safari 26+) */
+  @supports (animation-timeline: view()) {
+    /* Cada bloco da release (título, capa, destaques…) entra ao surgir na tela.
+       Anima os filhos e não o <article>: um transform no article viraria o
+       containing block dos metadados absolutos no desktop. */
+    .release > * {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+
+    /* Linha do tempo de cada item medida no centro da viewport (inset 50%/50%):
+       0% = topo do item cruzando o centro, 100% = base do item cruzando o centro. */
+    .timeline__item {
+      view-timeline: --release block;
+      view-timeline-inset: 50% 50%;
+    }
+
+    /* Trilho preenche com a cor de destaque conforme a leitura avança */
+    .timeline__item::after {
+      background: linear-gradient(var(--accent), var(--accent)) top / 100% 0% no-repeat var(--border);
+      animation: rail-fill linear both;
+      animation-timeline: --release;
+      animation-range: cover calc(var(--dot-top) + var(--dot) + var(--line-gap)) cover 100%;
+    }
+
+    /* O ponto acende quando a leitura chega nele */
+    .timeline__item:not(:has(.release--latest))::before {
+      animation: dot-reach linear both;
+      animation-timeline: --release;
+      animation-range: cover calc(var(--dot-top) + var(--dot) / 2 - 1px) cover calc(var(--dot-top) + var(--dot) / 2);
+    }
+  }
+
+  /* Releases vindas do "Carregar mais" (o JS marca com data-entering e --stagger) */
+  .timeline__item[data-entering] {
+    transition:
+      opacity 0.4s ease-out,
+      translate 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: calc(var(--stagger, 0) * 70ms);
+  }
+
+  @starting-style {
+    .timeline__item[data-entering] {
+      opacity: 0;
+      translate: 0 1rem;
+    }
+  }
+
+  /* View Transition dos filtros. Itens nomeados via JS durante a transição;
+     o fim da timeline tem nome próprio para deslizar em vez de piscar. */
+  .timeline__end {
+    view-transition-name: timeline-end;
+  }
+
+  .timeline__empty {
+    view-transition-name: timeline-empty;
+  }
+
+  ::view-transition-group(*) {
+    animation-duration: 0.35s;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}
+
+/* ==========================================================================
    Preferências do usuário
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
@@ -755,6 +846,7 @@ main:focus {
     forced-color-adjust: none;
     background: CanvasText;
     border-color: CanvasText;
+    animation: none;
   }
 
   .timeline__item::before {

@@ -22,6 +22,7 @@
 
   if (!timeline || !template) return;
 
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const archive = Array.isArray(window.CHANGELOG_ARCHIVE) ? window.CHANGELOG_ARCHIVE : [];
   let archiveIndex = 0;
   let activeFilter = "todos";
@@ -65,19 +66,57 @@
     return visible;
   }
 
+  /* ------------------------------------------------------------------------
+     View Transitions
+     Cada release recebe um view-transition-name só durante a transição, para
+     o navegador animar quem se move, entra ou sai. Sem suporte ou com
+     movimento reduzido, a atualização é aplicada direto.
+     ------------------------------------------------------------------------ */
+  let currentTransition = null;
+
+  function withViewTransition(update) {
+    if (!document.startViewTransition || reducedMotion.matches) {
+      update();
+      return Promise.resolve();
+    }
+
+    const items = [...timeline.querySelectorAll(".timeline__item")];
+    items.forEach((item) => {
+      item.style.viewTransitionName = `vt-${item.querySelector(".release__title").id}`;
+    });
+
+    const transition = document.startViewTransition(update);
+    currentTransition = transition;
+    // Uma transição interrompida por outra rejeita "ready" (AbortError); é esperado.
+    transition.ready.catch(() => {});
+    transition.finished.finally(() => {
+      // Um clique rápido pode iniciar outra transição antes desta acabar;
+      // só limpa os nomes se ela ainda for a mais recente.
+      if (currentTransition !== transition) return;
+      items.forEach((item) => {
+        item.style.viewTransitionName = "";
+      });
+    });
+    return transition.updateCallbackDone;
+  }
+
   function setFilter(filter) {
     activeFilter = filter;
     filterButtons.forEach((button) => {
       button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
     });
 
-    const visible = applyFilter();
-    const releases = pluralize(visible, "release", "releases");
-    announce(
-      filter === "todos"
-        ? `Mostrando todas as ${releases}.`
-        : `Mostrando ${releases} do tipo ${TYPE_LABELS[filter]}.`
-    );
+    let visible = 0;
+    withViewTransition(() => {
+      visible = applyFilter();
+    }).then(() => {
+      const releases = pluralize(visible, "release", "releases");
+      announce(
+        filter === "todos"
+          ? `Mostrando todas as ${releases}.`
+          : `Mostrando ${releases} do tipo ${TYPE_LABELS[filter]}.`
+      );
+    });
   }
 
   filterButtons.forEach((button) => {
@@ -171,6 +210,26 @@
     return item;
   }
 
+  // Marca os itens recém-inseridos para a transição de entrada (@starting-style),
+  // em cascata. A marca sai ao fim da transição para não animar de novo quando
+  // o item voltar a aparecer depois de um filtro.
+  function animateEntry(items) {
+    items.forEach((item, index) => {
+      item.dataset.entering = "";
+      item.style.setProperty("--stagger", index);
+
+      const done = (event) => {
+        if (event.target !== item || event.propertyName !== "opacity") return;
+        delete item.dataset.entering;
+        item.style.removeProperty("--stagger");
+        item.removeEventListener("transitionend", done);
+        item.removeEventListener("transitioncancel", done);
+      };
+      item.addEventListener("transitionend", done);
+      item.addEventListener("transitioncancel", done);
+    });
+  }
+
   function showDone() {
     loadMoreButton.hidden = true;
     doneMessage.hidden = false;
@@ -184,6 +243,7 @@
     timeline.append(...items);
     archiveIndex += batch.length;
     applyFilter();
+    if (!reducedMotion.matches) animateEntry(items.filter((item) => !item.hidden));
 
     const firstVisible = items.find((item) => !item.hidden);
     const visibleCount = items.filter((item) => !item.hidden).length;
