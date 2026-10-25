@@ -1,0 +1,17 @@
+{
+  "name": "changelog",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Craft project: an accessible, animated changelog page built with HTML, CSS and JavaScript.",
+  "author": "Mateus Villain",
+  "keywords": [
+    "changelog",
+    "craft",
+    "accessibility",
+    "view-transitions",
+    "scroll-driven-animations"
+  ],
+  "scripts": {
+    "start": "python3 -m http.server 4321"
+  }
+}
