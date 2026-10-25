@@ -33,6 +33,13 @@
   });
   if (!archive.length) showDone();
 
+  // Fim da animação de entrada: a partir daqui a primeira release volta para a
+  // animação de rolagem e não repete a entrada ao reaparecer depois de um filtro.
+  const entrance = document.getAnimations().filter((a) => a.animationName === "enter");
+  Promise.allSettled(entrance.map((a) => a.finished)).then(() => {
+    document.documentElement.dataset.entered = "";
+  });
+
   /* ------------------------------------------------------------------------
      Status para leitores de tela
      Limpar antes de escrever força o anúncio mesmo quando o texto se repete.
