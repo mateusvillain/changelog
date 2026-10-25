@@ -3,9 +3,14 @@
 
   const PAGE_SIZE = 4;
   const SVG_NS = "http://www.w3.org/2000/svg";
-  const MONTHS_SHORT = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-  const TYPE_LABELS = { novo: "Novo", melhoria: "Melhoria", correcao: "Correção" };
-  const longDate = new Intl.DateTimeFormat("pt-BR", {
+  const TYPE_LABELS = { new: "New", improvement: "Improvement", fix: "Fix" };
+  const shortDate = new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+  const longDate = new Intl.DateTimeFormat("en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -25,24 +30,24 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const archive = Array.isArray(window.CHANGELOG_ARCHIVE) ? window.CHANGELOG_ARCHIVE : [];
   let archiveIndex = 0;
-  let activeFilter = "todos";
+  let activeFilter = "all";
 
-  // Controles que dependem de JS só aparecem quando o JS está ativo.
+  // Controls that depend on JS are only shown when JS is running.
   document.querySelectorAll("[data-requires-js]").forEach((el) => {
     el.hidden = false;
   });
   if (!archive.length) showDone();
 
-  // Fim da animação de entrada: a partir daqui a primeira release volta para a
-  // animação de rolagem e não repete a entrada ao reaparecer depois de um filtro.
+  // End of the entrance animation: from here on the first release goes back to
+  // the scroll animation and won't replay the entrance after being filtered.
   const entrance = document.getAnimations().filter((a) => a.animationName === "enter");
   Promise.allSettled(entrance.map((a) => a.finished)).then(() => {
     document.documentElement.dataset.entered = "";
   });
 
   /* ------------------------------------------------------------------------
-     Status para leitores de tela
-     Limpar antes de escrever força o anúncio mesmo quando o texto se repete.
+     Screen reader status
+     Clearing before writing forces the announcement even if the text repeats.
      ------------------------------------------------------------------------ */
   function announce(message) {
     status.textContent = "";
@@ -56,10 +61,10 @@
   }
 
   /* ------------------------------------------------------------------------
-     Filtros
+     Filters
      ------------------------------------------------------------------------ */
   function matchesFilter(item) {
-    return activeFilter === "todos" || item.dataset.type === activeFilter;
+    return activeFilter === "all" || item.dataset.type === activeFilter;
   }
 
   function applyFilter() {
@@ -75,9 +80,9 @@
 
   /* ------------------------------------------------------------------------
      View Transitions
-     Cada release recebe um view-transition-name só durante a transição, para
-     o navegador animar quem se move, entra ou sai. Sem suporte ou com
-     movimento reduzido, a atualização é aplicada direto.
+     Each release gets a view-transition-name only during the transition, so
+     the browser can animate what moves, enters or leaves. Without support or
+     with reduced motion, the update is applied directly.
      ------------------------------------------------------------------------ */
   let currentTransition = null;
 
@@ -94,11 +99,11 @@
 
     const transition = document.startViewTransition(update);
     currentTransition = transition;
-    // Uma transição interrompida por outra rejeita "ready" (AbortError); é esperado.
+    // A transition interrupted by another one rejects "ready" (AbortError); that's expected.
     transition.ready.catch(() => {});
     transition.finished.finally(() => {
-      // Um clique rápido pode iniciar outra transição antes desta acabar;
-      // só limpa os nomes se ela ainda for a mais recente.
+      // A quick click can start another transition before this one ends;
+      // only clear the names if this is still the latest one.
       if (currentTransition !== transition) return;
       items.forEach((item) => {
         item.style.viewTransitionName = "";
@@ -119,9 +124,9 @@
     }).then(() => {
       const releases = pluralize(visible, "release", "releases");
       announce(
-        filter === "todos"
-          ? `Mostrando todas as ${releases}.`
-          : `Mostrando ${releases} do tipo ${TYPE_LABELS[filter]}.`
+        filter === "all"
+          ? `Showing all ${releases}.`
+          : `Showing ${releases} of type ${TYPE_LABELS[filter]}.`
       );
     });
   }
@@ -133,7 +138,7 @@
   });
 
   /* ------------------------------------------------------------------------
-     Renderização de releases carregadas sob demanda
+     Rendering releases loaded on demand
      ------------------------------------------------------------------------ */
   function slug(version) {
     return `release-v${version.replace(/\./g, "-")}`;
@@ -176,8 +181,7 @@
     item.querySelector(".release__description").textContent = release.description;
 
     item.querySelector(".release__date").setAttribute("datetime", release.date);
-    slot("date-short").textContent =
-      `${String(date.getUTCDate()).padStart(2, "0")} ${MONTHS_SHORT[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
+    slot("date-short").textContent = shortDate.format(date);
     slot("date-long").textContent = longDate.format(date);
     slot("version").textContent = `v${release.version}`;
 
@@ -212,14 +216,14 @@
 
     const link = item.querySelector(".release__link");
     link.href = release.url;
-    slot("link-context").textContent = ` da versão ${release.version}`;
+    slot("link-context").textContent = ` for version ${release.version}`;
 
     return item;
   }
 
-  // Marca os itens recém-inseridos para a transição de entrada (@starting-style),
-  // em cascata. A marca sai ao fim da transição para não animar de novo quando
-  // o item voltar a aparecer depois de um filtro.
+  // Marks newly inserted items for the staggered entry transition (@starting-style).
+  // The mark is removed when the transition ends so the item doesn't animate again
+  // when it reappears after a filter.
   function animateEntry(items) {
     items.forEach((item, index) => {
       item.dataset.entering = "";
@@ -257,20 +261,20 @@
     const finished = archiveIndex >= archive.length;
 
     let message =
-      activeFilter === "todos"
-        ? `${pluralize(batch.length, "release anterior carregada", "releases anteriores carregadas")}.`
-        : `${pluralize(batch.length, "release carregada", "releases carregadas")}, ${visibleCount} do tipo ${TYPE_LABELS[activeFilter]}.`;
-    if (finished) message += " Não há mais releases.";
+      activeFilter === "all"
+        ? `${pluralize(batch.length, "earlier release", "earlier releases")} loaded.`
+        : `${pluralize(batch.length, "release", "releases")} loaded, ${visibleCount} of type ${TYPE_LABELS[activeFilter]}.`;
+    if (finished) message += " No more releases.";
 
-    // Leva o foco para a primeira release nova, para quem navega por teclado
-    // ou leitor de tela continuar a leitura de onde o conteúdo apareceu.
+    // Move focus to the first new release, so keyboard and screen reader users
+    // continue reading where the new content appeared.
     if (firstVisible) {
       firstVisible.querySelector(".release__title").focus();
     }
 
     if (finished) {
       showDone();
-      // O botão sumiu: sem uma release nova para focar, o foco vai para a mensagem final.
+      // The button is gone: with no new release to focus, focus the final message.
       if (!firstVisible) {
         doneMessage.setAttribute("tabindex", "-1");
         doneMessage.focus();

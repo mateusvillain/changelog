@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Changelog — O que há de novo no Lumen</title>
-  <meta name="description" content="Novos recursos, melhorias e correções do Lumen, publicados a cada release.">
+  <title>Changelog · What's new in Lumen</title>
+  <meta name="description" content="New features, improvements and fixes in Lumen, shipped with every release.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,9 +15,9 @@
   <script src="js/app.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <a class="skip-link" href="#content">Skip to content</a>
 
-  <!-- Sprite de ícones (Lucide). Referenciado via <use>; sempre decorativo. -->
+  <!-- Icon sprite (Lucide). Referenced via <use>; always decorative. -->
   <svg xmlns="http://www.w3.org/2000/svg" hidden>
     <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M20 6 9 17l-5-5"/>
@@ -34,231 +34,231 @@
   </svg>
 
   <header class="page-header container">
-    <h1 class="page-header__title">O que há de novo no Lumen</h1>
-    <p class="page-header__subtitle">Novos recursos, melhorias e correções, publicados a cada release. Acompanhe a evolução do produto em ordem cronológica.</p>
+    <h1 class="page-header__title">What's new in Lumen</h1>
+    <p class="page-header__subtitle">New features, improvements and fixes, shipped with every release. Follow how the product evolves, in chronological order.</p>
   </header>
 
-  <main id="conteudo" tabindex="-1">
+  <main id="content" tabindex="-1">
     <div class="container">
       <div class="filter-bar">
         <div class="filters" role="group" aria-labelledby="filters-label" data-requires-js hidden>
-          <span id="filters-label" class="visually-hidden">Filtrar releases por tipo</span>
-          <button type="button" class="filter" data-filter="todos" aria-pressed="true">Todos</button>
-          <button type="button" class="filter" data-filter="novo" aria-pressed="false">Novo</button>
-          <button type="button" class="filter" data-filter="melhoria" aria-pressed="false">Melhoria</button>
-          <button type="button" class="filter" data-filter="correcao" aria-pressed="false">Correção</button>
+          <span id="filters-label" class="visually-hidden">Filter releases by type</span>
+          <button type="button" class="filter" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="filter" data-filter="new" aria-pressed="false">New</button>
+          <button type="button" class="filter" data-filter="improvement" aria-pressed="false">Improvement</button>
+          <button type="button" class="filter" data-filter="fix" aria-pressed="false">Fix</button>
         </div>
         <p class="filter-bar__count">
           <svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#icon-history"/></svg>
-          48 releases desde 2024
+          48 releases since 2024
         </p>
       </div>
 
       <section class="history" aria-labelledby="history-title">
-        <h2 id="history-title" class="visually-hidden">Histórico de releases</h2>
+        <h2 id="history-title" class="visually-hidden">Release history</h2>
 
-        <!-- Região anunciada por leitores de tela ao filtrar ou carregar mais itens -->
+        <!-- Region announced by screen readers when filtering or loading more items -->
         <p id="timeline-status" class="visually-hidden" role="status"></p>
 
         <ol id="timeline" class="timeline" role="list">
-          <li class="timeline__item" data-type="novo">
+          <li class="timeline__item" data-type="new">
             <article class="release release--latest" aria-labelledby="release-v3-2-0">
               <header class="release__header">
-                <h3 id="release-v3-2-0" class="release__title" tabindex="-1">Colaboração em tempo real</h3>
-                <p class="release__description">Agora várias pessoas podem editar o mesmo projeto ao mesmo tempo. Cursores, seleções e comentários aparecem instantaneamente para todo o time.</p>
+                <h3 id="release-v3-2-0" class="release__title" tabindex="-1">Real-time collaboration</h3>
+                <p class="release__description">Several people can now edit the same project at the same time. Cursors, selections and comments show up instantly for the whole team.</p>
               </header>
 
               <div class="release__meta">
                 <time class="release__date" datetime="2026-10-18">
-                  <span aria-hidden="true">18 Out 2026</span>
-                  <span class="visually-hidden">18 de outubro de 2026</span>
+                  <span aria-hidden="true">Oct 18, 2026</span>
+                  <span class="visually-hidden">October 18, 2026</span>
                 </time>
-                <span class="release__version"><span class="visually-hidden">Versão </span>v3.2.0</span>
-                <span class="release__latest">Mais recente</span>
+                <span class="release__version"><span class="visually-hidden">Version </span>v3.2.0</span>
+                <span class="release__latest">Latest</span>
                 <p class="release__author">
                   <img class="release__avatar" src="assets/avatars/ana-souza.jpg" alt="" width="22" height="22">
-                  <span><span class="visually-hidden">Publicado por </span>Ana Souza</span>
+                  <span><span class="visually-hidden">Published by </span>Ana Souza</span>
                 </p>
               </div>
 
-              <ul class="tags" role="list" aria-label="Categorias">
-                <li class="tag tag--novo">Novo</li>
-                <li class="tag">Colaboração</li>
+              <ul class="tags" role="list" aria-label="Categories">
+                <li class="tag tag--new">New</li>
+                <li class="tag">Collaboration</li>
               </ul>
 
-              <img class="release__cover" src="assets/covers/v3-2-0-colaboracao.jpg" alt="" width="1376" height="768" fetchpriority="high" decoding="async">
+              <img class="release__cover" src="assets/covers/v3-2-0-collaboration.jpg" alt="" width="1376" height="768" fetchpriority="high" decoding="async">
 
-              <ul class="highlights" role="list" aria-label="Destaques">
+              <ul class="highlights" role="list" aria-label="Highlights">
                 <li class="highlights__item">
                   <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
-                  Cursores ao vivo com nome e cor de cada pessoa
+                  Live cursors with each person's name and color
                 </li>
                 <li class="highlights__item">
                   <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
-                  Comentários em linha com menções e respostas
+                  Inline comments with mentions and replies
                 </li>
                 <li class="highlights__item">
                   <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
-                  Histórico de versões com restauração em um clique
+                  Version history with one-click restore
                 </li>
               </ul>
 
               <a class="release__link" href="releases/v3.2.0">
-                Ler notas completas<span class="visually-hidden"> da versão 3.2.0</span>
+                Read full notes<span class="visually-hidden"> for version 3.2.0</span>
                 <svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg>
               </a>
             </article>
           </li>
 
-          <li class="timeline__item" data-type="melhoria">
+          <li class="timeline__item" data-type="improvement">
             <article class="release" aria-labelledby="release-v3-1-4">
               <header class="release__header">
-                <h3 id="release-v3-1-4" class="release__title" tabindex="-1">Editor até 3× mais rápido</h3>
-                <p class="release__description">Reescrevemos o motor de renderização do editor. Projetos grandes abrem mais rápido e a rolagem permanece fluida mesmo com milhares de elementos.</p>
+                <h3 id="release-v3-1-4" class="release__title" tabindex="-1">Editor up to 3× faster</h3>
+                <p class="release__description">We rewrote the editor's rendering engine. Large projects open faster and scrolling stays smooth even with thousands of elements.</p>
               </header>
 
               <div class="release__meta">
                 <time class="release__date" datetime="2026-10-02">
-                  <span aria-hidden="true">02 Out 2026</span>
-                  <span class="visually-hidden">2 de outubro de 2026</span>
+                  <span aria-hidden="true">Oct 2, 2026</span>
+                  <span class="visually-hidden">October 2, 2026</span>
                 </time>
-                <span class="release__version"><span class="visually-hidden">Versão </span>v3.1.4</span>
+                <span class="release__version"><span class="visually-hidden">Version </span>v3.1.4</span>
                 <p class="release__author">
                   <img class="release__avatar" src="assets/avatars/rafael-lima.jpg" alt="" width="22" height="22">
-                  <span><span class="visually-hidden">Publicado por </span>Rafael Lima</span>
+                  <span><span class="visually-hidden">Published by </span>Rafael Lima</span>
                 </p>
               </div>
 
-              <ul class="tags" role="list" aria-label="Categorias">
-                <li class="tag tag--melhoria">Melhoria</li>
+              <ul class="tags" role="list" aria-label="Categories">
+                <li class="tag tag--improvement">Improvement</li>
                 <li class="tag">Performance</li>
               </ul>
 
               <img class="release__cover" src="assets/covers/v3-1-4-performance.jpg" alt="" width="768" height="1376" loading="lazy" decoding="async">
 
-              <ul class="highlights" role="list" aria-label="Destaques">
+              <ul class="highlights" role="list" aria-label="Highlights">
                 <li class="highlights__item">
                   <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
-                  Abertura de arquivos 3× mais rápida
+                  Files open 3× faster
                 </li>
                 <li class="highlights__item">
                   <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
-                  Uso de memória reduzido em 40%
+                  Memory usage down by 40%
                 </li>
               </ul>
 
               <a class="release__link" href="releases/v3.1.4">
-                Ler notas completas<span class="visually-hidden"> da versão 3.1.4</span>
+                Read full notes<span class="visually-hidden"> for version 3.1.4</span>
                 <svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg>
               </a>
             </article>
           </li>
 
-          <li class="timeline__item" data-type="novo">
+          <li class="timeline__item" data-type="new">
             <article class="release" aria-labelledby="release-v3-1-0">
               <header class="release__header">
-                <h3 id="release-v3-1-0" class="release__title" tabindex="-1">Modo escuro e novos temas</h3>
-                <p class="release__description">O modo escuro chegou. Escolha entre claro, escuro ou automático, e personalize a interface com seis novos temas de cor.</p>
+                <h3 id="release-v3-1-0" class="release__title" tabindex="-1">Dark mode and new themes</h3>
+                <p class="release__description">Dark mode is here. Choose light, dark or automatic, and personalize the interface with six new color themes.</p>
               </header>
 
               <div class="release__meta">
                 <time class="release__date" datetime="2026-09-12">
-                  <span aria-hidden="true">12 Set 2026</span>
-                  <span class="visually-hidden">12 de setembro de 2026</span>
+                  <span aria-hidden="true">Sep 12, 2026</span>
+                  <span class="visually-hidden">September 12, 2026</span>
                 </time>
-                <span class="release__version"><span class="visually-hidden">Versão </span>v3.1.0</span>
+                <span class="release__version"><span class="visually-hidden">Version </span>v3.1.0</span>
                 <p class="release__author">
                   <img class="release__avatar" src="assets/avatars/julia-martins.jpg" alt="" width="22" height="22">
-                  <span><span class="visually-hidden">Publicado por </span>Júlia Martins</span>
+                  <span><span class="visually-hidden">Published by </span>Júlia Martins</span>
                 </p>
               </div>
 
-              <ul class="tags" role="list" aria-label="Categorias">
-                <li class="tag tag--novo">Novo</li>
+              <ul class="tags" role="list" aria-label="Categories">
+                <li class="tag tag--new">New</li>
                 <li class="tag">Design</li>
               </ul>
 
-              <img class="release__cover" src="assets/covers/v3-1-0-modo-escuro.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+              <img class="release__cover" src="assets/covers/v3-1-0-dark-mode.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async">
 
-              <ul class="highlights" role="list" aria-label="Destaques">
+              <ul class="highlights" role="list" aria-label="Highlights">
                 <li class="highlights__item">
                   <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
-                  Alternância automática conforme o sistema
+                  Switches automatically with your system
                 </li>
                 <li class="highlights__item">
                   <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
-                  Seis temas de cor com contraste AA
+                  Six color themes with AA contrast
                 </li>
               </ul>
 
               <a class="release__link" href="releases/v3.1.0">
-                Ler notas completas<span class="visually-hidden"> da versão 3.1.0</span>
+                Read full notes<span class="visually-hidden"> for version 3.1.0</span>
                 <svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg>
               </a>
             </article>
           </li>
 
-          <li class="timeline__item" data-type="correcao">
+          <li class="timeline__item" data-type="fix">
             <article class="release" aria-labelledby="release-v3-0-2">
               <header class="release__header">
-                <h3 id="release-v3-0-2" class="release__title" tabindex="-1">Correções e estabilidade</h3>
-                <p class="release__description">Uma release focada em qualidade: corrigimos falhas relatadas pela comunidade e melhoramos a estabilidade geral.</p>
+                <h3 id="release-v3-0-2" class="release__title" tabindex="-1">Fixes and stability</h3>
+                <p class="release__description">A release focused on quality: we fixed issues reported by the community and improved overall stability.</p>
               </header>
 
               <div class="release__meta">
                 <time class="release__date" datetime="2026-08-28">
-                  <span aria-hidden="true">28 Ago 2026</span>
-                  <span class="visually-hidden">28 de agosto de 2026</span>
+                  <span aria-hidden="true">Aug 28, 2026</span>
+                  <span class="visually-hidden">August 28, 2026</span>
                 </time>
-                <span class="release__version"><span class="visually-hidden">Versão </span>v3.0.2</span>
+                <span class="release__version"><span class="visually-hidden">Version </span>v3.0.2</span>
                 <p class="release__author">
                   <img class="release__avatar" src="assets/avatars/diego-alves.jpg" alt="" width="22" height="22">
-                  <span><span class="visually-hidden">Publicado por </span>Diego Alves</span>
+                  <span><span class="visually-hidden">Published by </span>Diego Alves</span>
                 </p>
               </div>
 
-              <ul class="tags" role="list" aria-label="Categorias">
-                <li class="tag tag--correcao">Correção</li>
+              <ul class="tags" role="list" aria-label="Categories">
+                <li class="tag tag--fix">Fix</li>
                 <li class="tag">Editor</li>
               </ul>
 
-              <ul class="highlights" role="list" aria-label="Destaques">
+              <ul class="highlights" role="list" aria-label="Highlights">
                 <li class="highlights__item">
                   <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
-                  Corrigido travamento ao colar imagens grandes
+                  Fixed a crash when pasting large images
                 </li>
                 <li class="highlights__item">
                   <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
-                  Atalhos de teclado voltam a funcionar no Firefox
+                  Keyboard shortcuts work again in Firefox
                 </li>
                 <li class="highlights__item">
                   <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-check"/></svg>
-                  Exportação em PDF preserva fontes personalizadas
+                  PDF export keeps custom fonts
                 </li>
               </ul>
 
               <a class="release__link" href="releases/v3.0.2">
-                Ler notas completas<span class="visually-hidden"> da versão 3.0.2</span>
+                Read full notes<span class="visually-hidden"> for version 3.0.2</span>
                 <svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg>
               </a>
             </article>
           </li>
         </ol>
 
-        <p class="timeline__empty" hidden>Nenhuma release deste tipo por aqui ainda.</p>
+        <p class="timeline__empty" hidden>No releases of this type yet.</p>
 
         <div class="timeline__end">
           <button type="button" class="load-more" aria-controls="timeline" data-requires-js hidden>
-            Carregar releases anteriores
+            Load earlier releases
             <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#icon-chevron-down"/></svg>
           </button>
-          <p class="timeline__done" hidden>Você chegou ao início do changelog.</p>
+          <p class="timeline__done" hidden>You've reached the beginning of the changelog.</p>
         </div>
       </section>
     </div>
   </main>
 
-  <!-- Molde usado pelo JS para renderizar releases carregadas sob demanda -->
+  <!-- Template used by JS to render releases loaded on demand -->
   <template id="release-template">
     <li class="timeline__item">
       <article class="release">
@@ -271,16 +271,16 @@
             <span aria-hidden="true" data-slot="date-short"></span>
             <span class="visually-hidden" data-slot="date-long"></span>
           </time>
-          <span class="release__version"><span class="visually-hidden">Versão </span><span data-slot="version"></span></span>
+          <span class="release__version"><span class="visually-hidden">Version </span><span data-slot="version"></span></span>
           <p class="release__author">
             <img class="release__avatar" alt="" width="22" height="22" loading="lazy" decoding="async">
-            <span><span class="visually-hidden">Publicado por </span><span data-slot="author"></span></span>
+            <span><span class="visually-hidden">Published by </span><span data-slot="author"></span></span>
           </p>
         </div>
-        <ul class="tags" role="list" aria-label="Categorias"></ul>
-        <ul class="highlights" role="list" aria-label="Destaques"></ul>
+        <ul class="tags" role="list" aria-label="Categories"></ul>
+        <ul class="highlights" role="list" aria-label="Highlights"></ul>
         <a class="release__link">
-          Ler notas completas<span class="visually-hidden" data-slot="link-context"></span>
+          Read full notes<span class="visually-hidden" data-slot="link-context"></span>
           <svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"/></svg>
         </a>
       </article>

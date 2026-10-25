@@ -1,12 +1,12 @@
 /* ==========================================================================
-   Tokens (espelham as variáveis do arquivo .pen)
+   Tokens (mirror the variables from the .pen file)
    ========================================================================== */
 :root {
   --bg: #fafaf9;
   --surface: #ffffff;
   --text-primary: #0c0a09;
   --text-secondary: #57534e;
-  /* No design é #8A8580 (3.5:1 sobre --bg). Escurecido para 4.59:1 (WCAG AA). */
+  /* The design uses #8A8580 (3.5:1 on --bg). Darkened to 4.59:1 (WCAG AA). */
   --text-muted: #78716c;
   --border: #e7e5e4;
   --accent: #4f46e5;
@@ -15,12 +15,12 @@
 
   --tag-neutral-bg: #f4f4f2;
   --tag-neutral-fg: #57534e;
-  --tag-novo-bg: #e8f7ee;
-  --tag-novo-fg: #15803d;
-  --tag-melhoria-bg: #eef0ff;
-  --tag-melhoria-fg: #4338ca;
-  --tag-correcao-bg: #fef3e2;
-  --tag-correcao-fg: #b45309;
+  --tag-new-bg: #e8f7ee;
+  --tag-new-fg: #15803d;
+  --tag-improvement-bg: #eef0ff;
+  --tag-improvement-fg: #4338ca;
+  --tag-fix-bg: #fef3e2;
+  --tag-fix-fg: #b45309;
 
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-display: "Inter Tight", var(--font-sans);
@@ -29,7 +29,7 @@
   --radius-pill: 999px;
   --focus-ring: 2px solid var(--accent);
 
-  /* Layout — valores mobile (360); sobrescritos nos breakpoints abaixo */
+  /* Layout: mobile values (360), overridden in the breakpoints below */
   --gutter: 1.25rem;
   --container: 64rem;
 }
@@ -147,7 +147,7 @@ main:focus {
 }
 
 /* ==========================================================================
-   Cabeçalho da página
+   Page header
    ========================================================================== */
 .page-header {
   display: flex;
@@ -173,7 +173,7 @@ main:focus {
 }
 
 /* ==========================================================================
-   Barra de filtros
+   Filter bar
    ========================================================================== */
 .filter-bar {
   display: flex;
@@ -215,7 +215,7 @@ main:focus {
   color: var(--surface);
 }
 
-/* Contador é complementar: some no mobile, como no design */
+/* The count is supplementary: hidden on mobile, as in the design */
 .filter-bar__count {
   display: none;
   align-items: center;
@@ -227,18 +227,18 @@ main:focus {
 
 /* ==========================================================================
    Timeline
-   Cada item desenha seu próprio trilho: ::before = ponto, ::after = linha.
-   As variáveis abaixo controlam a geometria por breakpoint.
+   Each item draws its own rail: ::before = dot, ::after = line.
+   The variables below control the geometry per breakpoint.
    ========================================================================== */
 .history {
-  --rail: 1.5rem;          /* largura da coluna do trilho */
-  --meta-col: 0rem;        /* coluna lateral de metadados (só desktop) */
+  --rail: 1.5rem;          /* rail column width */
+  --meta-col: 0rem;        /* side metadata column (desktop only) */
   --dot: 0.75rem;
   --dot-left: 0rem;
   --dot-top: 0.1875rem;
   --ring: 3px;
   --item-gap: 0.875rem;
-  --item-space: 3.5rem;    /* espaço entre releases */
+  --item-space: 3.5rem;    /* space between releases */
   --line-gap: 0.5rem;
 }
 
@@ -282,7 +282,7 @@ main:focus {
   box-shadow: 0 0 0 var(--ring) var(--accent-ring);
 }
 
-/* Fim da timeline: ponto final + botão de carregar mais */
+/* End of the timeline: final dot + load more button */
 .timeline__end {
   position: relative;
   display: flex;
@@ -396,8 +396,8 @@ main:focus {
   line-height: 1.6;
 }
 
-/* Metadados: visualmente acima do título (order), mas depois dele no DOM,
-   para que a navegação por títulos do leitor de tela caia direto no nome da release. */
+/* Metadata: visually above the title (order), but after it in the DOM,
+   so screen reader heading navigation lands right on the release name. */
 .release__meta {
   order: -1;
   display: flex;
@@ -469,9 +469,9 @@ main:focus {
   line-height: 1.25;
 }
 
-.tag--novo     { background: var(--tag-novo-bg);     color: var(--tag-novo-fg); }
-.tag--melhoria { background: var(--tag-melhoria-bg); color: var(--tag-melhoria-fg); }
-.tag--correcao { background: var(--tag-correcao-bg); color: var(--tag-correcao-fg); }
+.tag--new         { background: var(--tag-new-bg);         color: var(--tag-new-fg); }
+.tag--improvement { background: var(--tag-improvement-bg); color: var(--tag-improvement-fg); }
+.tag--fix         { background: var(--tag-fix-bg);         color: var(--tag-fix-fg); }
 
 .release__cover {
   width: 100%;
@@ -508,7 +508,7 @@ main:focus {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  min-height: 1.5rem; /* área de toque mínima — WCAG 2.5.8 */
+  min-height: 1.5rem; /* minimum target size, WCAG 2.5.8 */
   font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
@@ -528,7 +528,7 @@ main:focus {
 }
 
 /* ==========================================================================
-   Tablet — ≥ 600px (design de 768)
+   Tablet: ≥ 600px (768 design)
    ========================================================================== */
 @media (min-width: 37.5em) {
   :root {
@@ -580,7 +580,7 @@ main:focus {
     font-size: 0.9375rem;
   }
 
-  /* Autor na mesma linha, separado por um divisor */
+  /* Author on the same line, after a divider */
   .release__author {
     flex-basis: auto;
   }
@@ -609,8 +609,8 @@ main:focus {
 }
 
 /* ==========================================================================
-   Desktop — ≥ 1024px (design de 1440)
-   Metadados migram para uma coluna à esquerda do trilho.
+   Desktop: ≥ 1024px (1440 design)
+   Metadata moves to a column left of the rail.
    ========================================================================== */
 @media (min-width: 64em) {
   .page-header {
@@ -728,10 +728,10 @@ main:focus {
 }
 
 /* ==========================================================================
-   Animações — melhoria progressiva
-   Tudo fica atrás de prefers-reduced-motion e de @supports: sem suporte ou com
-   movimento reduzido, o conteúdo aparece direto, sem nada escondido.
-   Só em "screen" para que a impressão nunca saia com itens transparentes.
+   Motion: progressive enhancement
+   Everything sits behind prefers-reduced-motion and @supports: without support
+   or with reduced motion, content shows right away and nothing stays hidden.
+   Screen only, so printing never outputs transparent items.
    ========================================================================== */
 @keyframes reveal {
   from {
@@ -762,23 +762,23 @@ main:focus {
 @media screen and (prefers-reduced-motion: no-preference) {
   /* Scroll-driven animations (Chrome/Edge 115+, Safari 26+) */
   @supports (animation-timeline: view()) {
-    /* Cada bloco da release (título, capa, destaques…) entra ao surgir na tela.
-       Anima os filhos e não o <article>: um transform no article viraria o
-       containing block dos metadados absolutos no desktop. */
+    /* Each release block (title, cover, highlights…) enters as it scrolls in.
+       Children are animated instead of the <article>: a transform on the article
+       would become the containing block of the absolute metadata on desktop. */
     .release > * {
       animation: reveal linear both;
       animation-timeline: view();
       animation-range: entry 0% entry 60%;
     }
 
-    /* Linha do tempo de cada item medida no centro da viewport (inset 50%/50%):
-       0% = topo do item cruzando o centro, 100% = base do item cruzando o centro. */
+    /* Each item's timeline is measured at the viewport center (inset 50%/50%):
+       0% = item top crossing the center, 100% = item bottom crossing the center. */
     .timeline__item {
       view-timeline: --release block;
       view-timeline-inset: 50% 50%;
     }
 
-    /* Trilho preenche com a cor de destaque conforme a leitura avança */
+    /* The rail fills with the accent color as reading progresses */
     .timeline__item::after {
       background: linear-gradient(var(--accent), var(--accent)) top / 100% 0% no-repeat var(--border);
       animation: rail-fill linear both;
@@ -786,7 +786,7 @@ main:focus {
       animation-range: cover calc(var(--dot-top) + var(--dot) + var(--line-gap)) cover 100%;
     }
 
-    /* O ponto acende quando a leitura chega nele */
+    /* The dot lights up when reading reaches it */
     .timeline__item:not(:has(.release--latest))::before {
       animation: dot-reach linear both;
       animation-timeline: --release;
@@ -794,8 +794,8 @@ main:focus {
     }
   }
 
-  /* Entrada da página: título → subtítulo → filtros → primeira release.
-     Cada passo começa 60ms depois do anterior; tudo termina em ~0,6s. */
+  /* Page entrance: title → subtitle → filters → first release.
+     Each step starts 60ms after the previous one; everything ends in ~0.6s. */
   .page-header__title,
   .page-header__subtitle,
   .filter-bar,
@@ -805,9 +805,9 @@ main:focus {
     animation-delay: calc(var(--enter-step) * 60ms);
   }
 
-  /* A primeira release já está na tela: troca a animação de rolagem pela de
-     entrada. O JS marca html[data-entered] ao fim, para que ela não se repita
-     quando o item reaparecer depois de um filtro. */
+  /* The first release is already on screen: swap the scroll animation for the
+     entrance. JS sets html[data-entered] at the end, so it doesn't replay when
+     the item reappears after a filter. */
   html:not([data-entered]) .timeline__item:first-child .release > * {
     animation-timeline: auto;
   }
@@ -817,7 +817,7 @@ main:focus {
   .filter-bar { --enter-step: 2; }
   .timeline__item:first-child { --enter-step: 3; }
 
-  /* Releases vindas do "Carregar mais" (o JS marca com data-entering e --stagger) */
+  /* Releases added by "Load more" (JS marks them with data-entering and --stagger) */
   .timeline__item[data-entering] {
     transition:
       opacity 0.4s ease-out,
@@ -832,8 +832,8 @@ main:focus {
     }
   }
 
-  /* View Transition dos filtros. Itens nomeados via JS durante a transição;
-     o fim da timeline tem nome próprio para deslizar em vez de piscar. */
+  /* Filter View Transition. Items are named by JS during the transition;
+     the timeline end has its own name so it slides instead of flashing. */
   .timeline__end {
     view-transition-name: timeline-end;
   }
@@ -849,7 +849,7 @@ main:focus {
 }
 
 /* ==========================================================================
-   Preferências do usuário
+   User preferences
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -861,7 +861,7 @@ main:focus {
   }
 }
 
-/* Modo de alto contraste (Windows): garante estado ativo e trilho visíveis */
+/* High contrast mode (Windows): keep the pressed state and rail visible */
 @media (forced-colors: active) {
   .filter[aria-pressed="true"] {
     border-color: Highlight;
