@@ -1,6 +1,6 @@
 # Changelog
 
-Um projeto de craft: uma página de changelog para o Lumen, um produto fictício. Desenhada no Pencil e construída com HTML, CSS e JavaScript puros, sem frameworks ou dependências.
+Um projeto de craft: uma página de changelog para o Lumen, um produto fictício. Desenhada no Figma e no Pen, e construída com HTML, CSS e JavaScript puros, sem frameworks ou dependências.
 
 [Read in English](README.md)
 
